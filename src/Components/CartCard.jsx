@@ -1,7 +1,6 @@
-export function CartCard({ product, cartList, setCartList }) {
-  function handleDelete(id) {
-    cartList.filter((product) => id !== product["EAN Number"]);
-  }
+import { useCart } from "../context/CartContext";
+export function CartCard({ product }) {
+  const { removeFromCart } = useCart();
   return (
     <main>
       <div className="border-2 border-gray-200 rounded-3xl shadow-2xl flex   flex-row flex-wrap p-7 justify-between items-center m-8">
@@ -22,8 +21,8 @@ export function CartCard({ product, cartList, setCartList }) {
         </div>
         <div>
           <button
+            onClick={() => removeFromCart(product)}
             className="text-xl bg-red-700 rounded-lg text-white p-3 font-medium"
-            onClick={() => handleDelete(product["EAN Number"])}
           >
             Remove
           </button>
